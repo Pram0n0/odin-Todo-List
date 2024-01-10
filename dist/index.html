@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Todo List</title>
+  </head>
+  <body>
+    <div class="header">
+      <p>To Do List</p>
+    </div>
+    <div class="navbar">
+      <h1>Projects</h1>
+      <p>Default</p>
+      <button id="showProjectFormBtn">Add Project</button>
+      <form class="addProjectForm" style="display: none">
+        <label for="projectName">Project Name: </label>
+        <input type="text" name="projectName" id="projectName">
+        <button type="submit" name="addProjectBtn" id="addProjectBtn">Add Project</button>
+      </form>
+    </div>
+    <div class="content">
+      <div class="taskItems"></div>
+      <div class="taskForm">
+        <button id="showTaskFormBtn">Add Task</button>
+        <form class="addTaskForm" style="display: none">
+          <label for="taskName">Task Name: </label>
+          <input type="text" name="taskName" id="taskName">
+          <label for="dueDate">Due Date: </label>
+          <input type="date" name="dueDate" id="dueDate">
+          <label for="priority">Priority: </label>
+          <select name="priority" id="priority">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+          <!-- hidden inputs -->  
+          <input type="hidden" name="description" id="description" value="">
+          <!-- fix the project input -->
+          <input type="hidden" name="project" id="project" value="${task.project}">
+          <button type="submit" name="addTaskBtn" id="addTaskBtn">Add Task</button>
+          <button name="cancelAddTaskBtn" id="cancelAddTaskBtn">Cancel</button>
+        </form>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>

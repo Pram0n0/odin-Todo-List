@@ -1,0 +1,23 @@
+{
+  "name": "odin-todo-list",
+  "version": "1.0.0",
+  "description": "odin project to do list",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pram0n0/odin-Todo-List.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pram0n0/odin-Todo-List/issues"
+  },
+  "homepage": "https://github.com/Pram0n0/odin-Todo-List#readme",
+  "devDependencies": {
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
