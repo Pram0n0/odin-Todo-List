@@ -1,10 +1,12 @@
 import { createProjects, createTask } from './todoFunctions';
 
 let projectList = [];
-projectList.push(createProjects("Default", []));
 
 const manipulation = async () => {
-    
+    loadSaved();
+
+    switchProjects();
+
     displayProjectForm();
     addProject();
 
@@ -34,6 +36,7 @@ function addProject() {
         switchProjects();
 
         clearProjectForm();
+        localStorage.setItem('projects', JSON.stringify(projectList));
     });
 
     cancelAddProjectBtn.addEventListener("click", () => {
@@ -139,6 +142,7 @@ function addTask() {
         addTasktoProjectList(task)
 
         clearTaskForm();
+        localStorage.setItem('projects', JSON.stringify(projectList));
     });
 
     cancelAddTaskBtn.addEventListener("click", () => {
@@ -234,18 +238,20 @@ function editTask(task) {
         let _priority = taskPriority2.value;
         let _description = taskDescription2.value;
 
-        task.taskName = _taskName
-        task.dueDate = _dueDate
-        task.priority = _priority
-        task.description = _description
+        console.log("Original Task:", task);
 
-        console.log(task.taskName, task.dueDate, task.priority, task.description)
+        task.taskName = _taskName;
+        task.dueDate = _dueDate;
+        task.priority = _priority;
+        task.description = _description;
+
+        console.log("Updated Task:", task);
+        console.log("Submitted Form Values:", _taskName, _dueDate, _priority, _description);
 
         clearEditForm();
 
         //To refresh the list
         editTaskinTaskList();
-
     });
 
     cancelEditTaskBtn.addEventListener("click", () => {
@@ -263,6 +269,22 @@ function clearEditForm() {
 
 function editTaskinTaskList() {
     displayTasksByProject(selectedProject)
+}
+
+function loadSaved() {
+    const savedProjects = localStorage.getItem('projects');
+    if (savedProjects) {
+        projectList = JSON.parse(savedProjects);
+        displayProjectList(projectList);
+    } else {
+        projectList.push(createProjects("Default", []));
+        displayProjectList(projectList); 
+    }
+    loadDefault();
+}
+
+function loadDefault() {
+    displayTaskList(projectList[0].tasks)
 }
 
 export { manipulation }
