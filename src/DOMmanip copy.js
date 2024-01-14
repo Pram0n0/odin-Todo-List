@@ -2,6 +2,7 @@ import { createProjects, createTask } from './todoFunctions';
 
 let projectList = [];
 projectList.push(createProjects("Default", []));
+let taskList = [];
 
 const manipulation = async () => {
     
@@ -88,11 +89,8 @@ function switchProjects() {
 }
 
 function displayTasksByProject(selectedProject) {
-    for (let i = 0; i < projectList.length; i++) {
-        if (selectedProject == projectList[i].projectName) {
-            displayTaskList(projectList[i].tasks)
-        }
-    }
+    const filteredTasks = taskList.filter((task) => task.project === selectedProject);
+    displayTaskList(filteredTasks);
 }
 
 const addTaskForm = document.querySelector(".addTaskForm")
@@ -137,6 +135,7 @@ function addTask() {
 
         const task = createTask(_taskName, _dueDate, _priority, _description, _project);
         addTasktoProjectList(task)
+        addTasktoTaskList(task);
 
         clearTaskForm();
     });
@@ -153,10 +152,17 @@ function clearTaskForm() {
     addTaskForm.style.display = "none"
 }
 
+function addTasktoTaskList(taskObject) {
+    taskList.push(taskObject);
+    console.log(taskList)
+    displayTasksByProject(selectedProject)
+}
+
 function displayTask(task) {
     const card = document.createElement("div");
     card.classList.add("card");
     card.classList.add(`${task.project}-task`);
+    console.log(`class: ${task.project}-task added`)
 
     card.innerHTML = `
         <h2>${task.taskName}</h2>
@@ -215,7 +221,6 @@ function addTasktoProjectList(taskObject) {
         if (_projectName == projectList[i].projectName) {
             projectList[i].tasks.push(taskObject)
             console.log(projectList[i])
-            displayTaskList(projectList[i].tasks)
         }
     }
 }

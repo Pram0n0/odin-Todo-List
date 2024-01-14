@@ -10,12 +10,14 @@
     </div>
     <div class="navbar">
       <h1>Projects</h1>
-      <p>Default</p>
+      <button class="project-button">Default</button>
       <button id="showProjectFormBtn">Add Project</button>
+      <div class="projectList"></div>
       <form class="addProjectForm" style="display: none">
         <label for="projectName">Project Name: </label>
         <input type="text" name="projectName" id="projectName">
         <button type="submit" name="addProjectBtn" id="addProjectBtn">Add Project</button>
+        <button type="button" name="cancelAddProjectBtn" id="cancelAddProjectBtn">Cancel</button>
       </form>
     </div>
     <div class="content">
@@ -24,21 +26,38 @@
         <button id="showTaskFormBtn">Add Task</button>
         <form class="addTaskForm" style="display: none">
           <label for="taskName">Task Name: </label>
-          <input type="text" name="taskName" id="taskName">
+          <input type="text" name="taskName" id="taskName" required>
           <label for="dueDate">Due Date: </label>
-          <input type="date" name="dueDate" id="dueDate">
+          <input type="date" name="dueDate" id="dueDate" required>
           <label for="priority">Priority: </label>
-          <select name="priority" id="priority">
+          <select name="priority" id="priority" required>
             <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
+            <option value="Medium" selected>Medium</option>
             <option value="High">High</option>
           </select>
           <!-- hidden inputs -->  
           <input type="hidden" name="description" id="description" value="">
-          <!-- fix the project input -->
-          <input type="hidden" name="project" id="project" value="${task.project}">
+          <input type="hidden" name="project" id="project" value="Default">
           <button type="submit" name="addTaskBtn" id="addTaskBtn">Add Task</button>
-          <button name="cancelAddTaskBtn" id="cancelAddTaskBtn">Cancel</button>
+          <button type="button" name="cancelAddTaskBtn" id="cancelAddTaskBtn">Cancel</button>
+        </form>
+        <form class="editTaskForm" style="display: none">
+          <label for="taskName2">Task Name: </label>
+          <input type="text" name="taskName2" id="taskName2" required>
+          <label for="dueDate2">Due Date: </label>
+          <input type="date" name="dueDate2" id="dueDate2" required>
+          <label for="priority2">Priority: </label>
+          <select name="priority2" id="priority2" required>
+            <option value="Low">Low</option>
+            <option value="Medium" selected>Medium</option>
+            <option value="High">High</option>
+          </select>
+          <label for="description2">Description: </label>
+          <input type="text" name="description2" id="description2" value="">
+          <!-- hidden inputs -->  
+          <input type="hidden" name="project" id="project" value="Default">
+          <button type="submit" name="editTaskBtn" id="editTaskBtn">Edit Task</button>
+          <button type="button" name="cancelEditTaskBtn" id="cancelEditTaskBtn">Cancel Edit</button>
         </form>
       </div>
     </div>
